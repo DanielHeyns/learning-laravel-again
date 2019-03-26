@@ -36,11 +36,10 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=>'required',
-            'description'=>'required',
-        ]);
-        Project::create($request->all());
+        Project::create($request->validate([
+            'title'=>['required','min:3'],
+            'description'=>['required','min:3'],
+        ]));
         return redirect('projects');
     }
 
