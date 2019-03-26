@@ -8,19 +8,19 @@
 
     <div class="field">
         <label class="label" for="title">Title</label>
-        <div class="control">
-            <input type="text" name="title" class="input" placeholder="Project Title" value="{{$project->title}}"" required>
+        <div class="form-group">
+            <input type="text" name="title" class="form-control" placeholder="Project Title" value="{{$project->title}}"" required>
         </div>
     </div>
 
     <div class="field">
         <label class="label" for="description">Description</label>
         <div class="control">
-            <textarea name="description" class="input" placeholder="Project Description" required>{{$project->description}}</textarea>
+            <textarea name="description" class="form-control" placeholder="Project Description" required>{{$project->description}}</textarea>
         </div>
     </div>
 
-    <input type="submit" value="Update Project">
+    <input type="submit" class="btn btn-primary" value="Update Project" style ="margin-top:1%">
 
 
 </form>
@@ -29,8 +29,8 @@
     {{csrf_field()}}
     {{method_field('DELETE')}}
     <div class = "field">
-        <div class="control">
-            <input type="submit" value="Delete Project LUL">
+        <div class="control" style ="margin-top:1%">
+            <input type="submit" class="btn btn-primary" value="Delete Project LUL">
         </div>
     </div>
 </form>
