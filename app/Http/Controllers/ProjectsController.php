@@ -36,7 +36,11 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Project::create($request->all());
+        $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+        ]);
+        Project::create($request->all());
         return redirect('projects');
     }
 
@@ -48,7 +52,7 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('projects.show', compact('project'));
     }
 
     /**
@@ -59,7 +63,7 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('projects.edit',compact('project'));
     }
 
     /**
@@ -71,8 +75,9 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
-    }
+        $project->update($request->all());
+        return redirect('projects');
+    }   
 
     /**
      * Remove the specified resource from storage.
@@ -80,8 +85,9 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
+        Project::findOrFail($id)->delete();
+        return redirect('projects');
     }
 }
